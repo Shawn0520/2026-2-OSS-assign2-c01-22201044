@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스마트 가전 관리 - 상세 보기</title>
+  <link rel="stylesheet" href="my.css">
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1>⚡ Smart Device Manager</h1>
+      <nav><a href="index.html">홈</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>가전 기기 상세 정보</h2>
+      
+      <!-- 레코드의 모든 Field 표시 -->
+      <table style="margin-bottom: 25px;">
+        <tr>
+          <th style="width: 30%;">ID</th>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th>기기명</th>
+          <td>LG 오브제 스탠드 청소기</td>
+        </tr>
+        <tr>
+          <th>카테고리</th>
+          <td>생활가전</td>
+        </tr>
+        <tr>
+          <th>구매 가격</th>
+          <td>1,200,000 원</td>
+        </tr>
+        <tr>
+          <th>구매일자</th>
+          <td>2024-05-15</td>
+        </tr>
+        <tr>
+          <th>무상 보증기간</th>
+          <td>2년</td>
+        </tr>
+        <tr>
+          <th>상태</th>
+          <td><span style="color: green; font-weight: bold;">정상 작동</span></td>
+        </tr>
+      </table>
+
+      <!-- 기능 버튼 -->
+      <div class="btn-group">
+        <a href="edit.html" class="btn btn-primary">Edit (수정)</a>
+        <button onclick="handleDelete()" class="btn btn-danger">Delete (삭제)</button>
+        <a href="index.html" class="btn btn-secondary">목록으로</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function handleDelete() {
+      // Delete 클릭 시 confirm() 다이얼로그 표시
+      if (confirm("정말로 이 게시물을 삭제하시겠습니까?")) {
+        alert("삭제되었습니다.");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스마트 가전 관리 - 추가</title>
+  <link rel="stylesheet" href="my.css">
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1>⚡ Smart Device Manager</h1>
+      <nav><a href="index.html">홈</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>신규 가전 기기 등록</h2>
+      <form id="addForm" onsubmit="return validateAndSubmit(event)">
+        <!-- Field 1: 기기명 -->
+        <div class="form-group">
+          <label for="name">기기명 *</label>
+          <input type="text" id="name" name="name" placeholder="예: 삼성 스탠드 에어컨">
+        </div>
+
+        <!-- Field 2: 카테고리 -->
+        <div class="form-group">
+          <label for="category">카테고리 *</label>
+          <select id="category" name="category">
+            <option value="">-- 선택하세요 --</option>
+            <option value="주방가전">주방가전</option>
+            <option value="생활가전">생활가전</option>
+            <option value="IT/음향">IT/음향</option>
+            <option value="계절가전">계절가전</option>
+          </select>
+        </div>
+
+        <!-- Field 3: 구매 가격 -->
+        <div class="form-group">
+          <label for="price">구매 가격(원) *</label>
+          <input type="number" id="price" name="price" placeholder="10000 이상 입력">
+        </div>
+
+        <!-- Field 4: 구매일자 -->
+        <div class="form-group">
+          <label for="purchaseDate">구매일자 *</label>
+          <input type="date" id="purchaseDate" name="purchaseDate">
+        </div>
+
+        <!-- Field 5: 무상 보증기간 -->
+        <div class="form-group">
+          <label for="warranty">무상 보증기간 *</label>
+          <select id="warranty" name="warranty">
+            <option value="">-- 선택하세요 --</option>
+            <option value="1년">1년</option>
+            <option value="2년">2년</option>
+            <option value="3년">3년</option>
+            <option value="5년">5년</option>
+          </select>
+        </div>
+
+        <!-- Field 6: 상태 -->
+        <div class="form-group">
+          <label>기기 상태 *</label>
+          <div class="radio-group">
+            <label><input type="radio" name="status" value="정상 작동" checked> 정상 작동</label>
+            <label><input type="radio" name="status" value="수리 필요"> 수리 필요</label>
+            <label><input type="radio" name="status" value="폐기/교체"> 폐기/교체</label>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">추가</button>
+          <a href="index.html" class="btn btn-secondary">취소</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function validateAndSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const category = document.getElementById('category').value;
+      const price = document.getElementById('price').value;
+      const purchaseDate = document.getElementById('purchaseDate').value;
+      const warranty = document.getElementById('warranty').value;
+
+      // Validation 1: 기기명 필수값 및 문자열 길이 검증 (2자 이상)
+      if (name === "" || name.length < 2) {
+        alert("기기명을 2자 이상 입력해 주세요.");
+        return false;
+      }
+
+      // Validation 2: Select 선택 여부 검증 (카테고리 및 보증기간)
+      if (category === "" || warranty === "") {
+        alert("카테고리와 무상 보증기간을 모두 선택해 주세요.");
+        return false;
+      }
+
+      // Validation 3: 숫자 범위 검증 (가격 10,000원 이상)
+      if (price === "" || Number(price) < 10000) {
+        alert("구매 가격은 최소 10,000원 이상이어야 합니다.");
+        return false;
+      }
+
+      // Validation 4: 날짜 입력 여부 검증
+      if (!purchaseDate) {
+        alert("구매일자를 올바르게 입력해 주세요.");
+        return false;
+      }
+
+      // 조건 충족 시 안내 메시지 표시 및 이동
+      alert("게시물이 추가됩니다.");
+      window.location.href = "index.html";
+      return true;
+    }
+  </script>
+</body>
+</html>

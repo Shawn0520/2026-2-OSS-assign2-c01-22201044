@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스마트 가전 관리 - 수정</title>
+  <link rel="stylesheet" href="my.css">
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <h1>⚡ Smart Device Manager</h1>
+      <nav><a href="index.html">홈</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>가전 기기 정보 수정</h2>
+      <form id="editForm" onsubmit="return handleEdit(event)">
+        <!-- 기존 값 채워넣기 (Pre-filled) -->
+        <div class="form-group">
+          <label for="name">기기명 *</label>
+          <input type="text" id="name" name="name" value="LG 오브제 스탠드 청소기">
+        </div>
+
+        <div class="form-group">
+          <label for="category">카테고리 *</label>
+          <select id="category" name="category">
+            <option value="">-- 선택하세요 --</option>
+            <option value="주방가전">주방가전</option>
+            <option value="생활가전" selected>생활가전</option>
+            <option value="IT/음향">IT/음향</option>
+            <option value="계절가전">계절가전</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="price">구매 가격(원) *</label>
+          <input type="number" id="price" name="price" value="1200000">
+        </div>
+
+        <div class="form-group">
+          <label for="purchaseDate">구매일자 *</label>
+          <input type="date" id="purchaseDate" name="purchaseDate" value="2024-05-15">
+        </div>
+
+        <div class="form-group">
+          <label for="warranty">무상 보증기간 *</label>
+          <select id="warranty" name="warranty">
+            <option value="">-- 선택하세요 --</option>
+            <option value="1년">1년</option>
+            <option value="2년" selected>2년</option>
+            <option value="3년">3년</option>
+            <option value="5년">5년</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>기기 상태 *</label>
+          <div class="radio-group">
+            <label><input type="radio" name="status" value="정상 작동" checked> 정상 작동</label>
+            <label><input type="radio" name="status" value="수리 필요"> 수리 필요</label>
+            <label><input type="radio" name="status" value="폐기/교체"> 폐기/교체</label>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">수정</button>
+          <a href="view.html" class="btn btn-secondary">취소</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function handleEdit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const category = document.getElementById('category').value;
+      const price = document.getElementById('price').value;
+      const purchaseDate = document.getElementById('purchaseDate').value;
+
+      // Validation 1: 필수값 & 문자열 길이 (2자 이상)
+      if (name === "" || name.length < 2) {
+        alert("기기명을 2자 이상 입력해 주세요.");
+        return false;
+      }
+
+      // Validation 2: Select 항목 선택 확인
+      if (category === "") {
+        alert("카테고리를 선택해 주세요.");
+        return false;
+      }
+
+      // Validation 3: 숫자 범위 검증
+      if (price === "" || Number(price) < 10000) {
+        alert("구매 가격은 최소 10,000원 이상이어야 합니다.");
+        return false;
+      }
+
+      // Validation 4: 날짜 입력 확인
+      if (!purchaseDate) {
+        alert("구매일자를 입력해 주세요.");
+        return false;
+      }
+
+      // 수정 확인 메시지 confirm() 호출
+      if (confirm("게시물을 수정할까요?")) {
+        alert("성공적으로 수정되었습니다.");
+        window.location.href = "view.html";
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
